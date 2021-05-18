@@ -1,0 +1,97 @@
+jobs:
+- name: build-meta
+  plan:
+  - get: repo
+  - put: metalink
+    params:
+      files:
+      - file.yml
+      rename: "{{.Version}}/warden-boshlite-go_agent.meta4"
+      options:
+        author_email: ci@localhost
+        author_name: CI Bot
+        message: 'test'
+      version: version
+
+
+resources:
+- name: repo
+  type: git
+  source:
+    # private_key: |
+    #   -----BEGIN RSA PRIVATE KEY-----
+    #   MIIEpQIBAAKCAQEAwU9x6tmKhlXwsSQleJusNtUPkQsZN9aueiU9Iut+qy3dFbTG
+    #   uFrB+tdssMGhXCosTHf2bbNSMqLkcwA1AmbkdFxQb3TtLb9rPWL8Gur2PaVb9zOD
+    #   PVphb8XQcV6UxjbMkve6upiqNTeKybYqu4pSg6S3S7iCMFDv6MpYlB0puIrK7mlh
+    #   Jjhxv1ezAT9KQGTtvGrmY0hyyYeMS1UOeuugTi7nC2yjzlzb0XaMQi/wVzymvgns
+    #   d6b8Yc7Q7CyCVdM/aIZaW3HZyrFCgOSqMxze6n10yBckzNfIloxSMmUGamFLE2V0
+    #   bnjKk1cW40EDALnPvpR6+T/UBHan+Ax7HeY1TQIDAQABAoIBAQCQ/IcSf+sX6mlG
+    #   UzgPh6LY1WCBhvN5H/lo/3klMb+loBaL6zSInPmUq/KHeBMQT0k+aVNY4AAsnmP9
+    #   pRAdJxL9+ycREX+6qjFCr3Uqs0PQ5K9fbzFl2N3vuUwnW6r2J6+0Iz3YKhyvIWNk
+    #   +s5+LrbIqcgYcOCkYHAwB2P8YwshrxmWUqAfNvo02UWOnfK3F0tLHGLqObDNCO/H
+    #   Aj4vB4czT0TBvqvlRCnMAfZG+PvE8gEgAIxhbLvb6tv1zHcONg027LNI+Lmooms2
+    #   TwxHXlA6Quh2QWR7K2zQP2SAOplXQPPm8qyn0GnnR3aidnLsNU0wRUkjwdVuxu+Y
+    #   Uy3JBVDBAoGBAOhHRI1QHeINNlXf6ZXFyHdb6ctoXYrEFLgtgBy2o7SDG5k2gr9f
+    #   sdMmbk/ukaZRtbeldhb+FybjO55u5oHenaWet+6HL99lrR8ZAE5ADOxeIPK3ZQzH
+    #   LwuW1QrLDtcC3GYRqjRfN52LQJ2I4Xtj46DhhxeP+tyMjS287SeMGRv5AoGBANUN
+    #   Y3qXPxVross9q2cksq2iDi7POo3SwQo4Afpf1ASxsvFp28UPE/N9sQeFlsEcYaoO
+    #   nwouYcxDItvSoeEJTUT5Y19U00q1CIjl3V3n0fEQ8ZzhiBzPhsK1bRyC9G5UZLPN
+    #   CwfB2zkjCbREhlAHNMautT0dnHT4dPryxGG0DfD1AoGBANAUD+gbrjlzpoo1RRZD
+    #   kLrEHuN2Ad4um3UGZa7TOkGZ9Z5CA8yWWEGUOtvmFpoMtqHmWqxsQKc4ho7+QAZ1
+    #   O3pDfffzKMKSXgzuo6R1ol4YUKG+Aor44D8chordrtSUHoZdKsExzyuVtHOrTHrx
+    #   19emUROdipgKXOptRXHZAiFZAoGAEg7/dp2pUDR+aQHCLIz0xDjvQNJ54RmTGT2k
+    #   FUfYHcm+JC5X3X0osMPfpIaTP60bLiHtIxzJV1n9c2qIJB34ubb10FfNTRDJN2lc
+    #   eSA0MF3CTQzkz6RbhNeB9x+2fj+TBZaEr9Sjs1Uf9nK0e8YQmCKo5BRFdbi1mavI
+    #   L4vmfp0CgYEAvvywLJ+DJoiWp4fWrvLm+toNJ9nBXy2iUaxzIDnj2PPGqiin/gtg
+    #   PCl5qvmJoWuP0cXnuI36t6lApfPIjSzQAnxmW76z4crnuDZZeAsT5Q0HmSQ0lC+N
+    #   Qo0ov7+NSUjmBiF17bRADSs10qAoNsTXP+1cWVDRh45jbNO1gHsOiVg=
+    #   -----END RSA PRIVATE KEY-----
+    uri: git@github.com:ramonskie/metalink-gcs-test.git
+- name: metalink
+  source:
+    options:
+      private_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEpQIBAAKCAQEAwU9x6tmKhlXwsSQleJusNtUPkQsZN9aueiU9Iut+qy3dFbTG
+        uFrB+tdssMGhXCosTHf2bbNSMqLkcwA1AmbkdFxQb3TtLb9rPWL8Gur2PaVb9zOD
+        PVphb8XQcV6UxjbMkve6upiqNTeKybYqu4pSg6S3S7iCMFDv6MpYlB0puIrK7mlh
+        Jjhxv1ezAT9KQGTtvGrmY0hyyYeMS1UOeuugTi7nC2yjzlzb0XaMQi/wVzymvgns
+        d6b8Yc7Q7CyCVdM/aIZaW3HZyrFCgOSqMxze6n10yBckzNfIloxSMmUGamFLE2V0
+        bnjKk1cW40EDALnPvpR6+T/UBHan+Ax7HeY1TQIDAQABAoIBAQCQ/IcSf+sX6mlG
+        UzgPh6LY1WCBhvN5H/lo/3klMb+loBaL6zSInPmUq/KHeBMQT0k+aVNY4AAsnmP9
+        pRAdJxL9+ycREX+6qjFCr3Uqs0PQ5K9fbzFl2N3vuUwnW6r2J6+0Iz3YKhyvIWNk
+        +s5+LrbIqcgYcOCkYHAwB2P8YwshrxmWUqAfNvo02UWOnfK3F0tLHGLqObDNCO/H
+        Aj4vB4czT0TBvqvlRCnMAfZG+PvE8gEgAIxhbLvb6tv1zHcONg027LNI+Lmooms2
+        TwxHXlA6Quh2QWR7K2zQP2SAOplXQPPm8qyn0GnnR3aidnLsNU0wRUkjwdVuxu+Y
+        Uy3JBVDBAoGBAOhHRI1QHeINNlXf6ZXFyHdb6ctoXYrEFLgtgBy2o7SDG5k2gr9f
+        sdMmbk/ukaZRtbeldhb+FybjO55u5oHenaWet+6HL99lrR8ZAE5ADOxeIPK3ZQzH
+        LwuW1QrLDtcC3GYRqjRfN52LQJ2I4Xtj46DhhxeP+tyMjS287SeMGRv5AoGBANUN
+        Y3qXPxVross9q2cksq2iDi7POo3SwQo4Afpf1ASxsvFp28UPE/N9sQeFlsEcYaoO
+        nwouYcxDItvSoeEJTUT5Y19U00q1CIjl3V3n0fEQ8ZzhiBzPhsK1bRyC9G5UZLPN
+        CwfB2zkjCbREhlAHNMautT0dnHT4dPryxGG0DfD1AoGBANAUD+gbrjlzpoo1RRZD
+        kLrEHuN2Ad4um3UGZa7TOkGZ9Z5CA8yWWEGUOtvmFpoMtqHmWqxsQKc4ho7+QAZ1
+        O3pDfffzKMKSXgzuo6R1ol4YUKG+Aor44D8chordrtSUHoZdKsExzyuVtHOrTHrx
+        19emUROdipgKXOptRXHZAiFZAoGAEg7/dp2pUDR+aQHCLIz0xDjvQNJ54RmTGT2k
+        FUfYHcm+JC5X3X0osMPfpIaTP60bLiHtIxzJV1n9c2qIJB34ubb10FfNTRDJN2lc
+        eSA0MF3CTQzkz6RbhNeB9x+2fj+TBZaEr9Sjs1Uf9nK0e8YQmCKo5BRFdbi1mavI
+        L4vmfp0CgYEAvvywLJ+DJoiWp4fWrvLm+toNJ9nBXy2iUaxzIDnj2PPGqiin/gtg
+        PCl5qvmJoWuP0cXnuI36t6lApfPIjSzQAnxmW76z4crnuDZZeAsT5Q0HmSQ0lC+N
+        Qo0ov7+NSUjmBiF17bRADSs10qAoNsTXP+1cWVDRh45jbNO1gHsOiVg=
+        -----END RSA PRIVATE KEY-----
+    uri: git+ssh://git@github.com:ramonskie/metalink-gcs-test.git/link
+    url_handlers:
+    - type: s3
+      include:
+      - (s3|https)://.*
+      options:
+        access_key: GOOGPB3OMQDQIWLJ7JGWDKM6
+        secret_key: AZjeo65nz9LAKlS5k9dnhsxh/EBCSK/PB5R7VZWy
+    - destination: s3://storage.googleapis.com/ikbeneentest/file/{{.Version}}/{{.Name}}
+  type: metalink-repository
+
+
+resource_types:
+- name: metalink-repository
+  type: docker-image
+  source:
+    repository: dpb587/metalink-repository-resource
